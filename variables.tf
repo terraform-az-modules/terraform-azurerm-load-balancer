@@ -207,7 +207,6 @@ variable "frontend_ip_configurations" {
     {
       name                          = "mypublicIP"
       private_ip_address_allocation = "Dynamic"
-      public_ip_enabled             = true
       # Only set one of private_ip_address or subnet_id depending on your setup
       # private_ip_address          = null # For static private IP
       subnet_id = null
@@ -267,16 +266,16 @@ variable "enable_ni_association" {
   description = "Enable or disable Network Interface Association with Load Balancer Backend Pool"
 }
 
-variable "network_interaface_id_association" {
+variable "network_interface_id_association" {
   type        = list(string)
-  default     = [""]
-  description = "(Required) Network Interaface id for Network Interface Association with Load Balancer."
+  default     = []
+  description = "(Required) Network Interface id for Network Interface Association with Load Balancer."
 }
 
 variable "ip_configuration_name_association" {
   type        = list(string)
-  default     = [""]
-  description = "(Required) Ip Configuration name for Network Interaface Association with Load Balancer."
+  default     = []
+  description = "(Required) Ip Configuration name for Network Interface Association with Load Balancer."
 }
 
 ##-----------------------------------------------------------------------------

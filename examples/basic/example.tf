@@ -95,7 +95,7 @@ module "load-balancer" {
 
   # Backend Pool
   is_enable_backend_pool = false
-  # network_interaface_id_association = ""
+  # network_interface_id_association = ""
 
   remote_port = {
     ssh   = ["Tcp", "22"]
@@ -111,6 +111,4 @@ module "load-balancer" {
     http  = ["Tcp", "80", ""]
     http2 = ["Http", "1443", "/"]
   }
-
-  depends_on = [module.resource_group]
 }

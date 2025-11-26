@@ -105,7 +105,7 @@ module "vault" {
   network_acls = {
     bypass         = "AzureServices"
     default_action = "Deny"
-    ip_rules       = ["0.0.0.0/0"]
+    ip_rules       = []
   }
   reader_objects_ids = {
     "Key Vault Administrator" = {
@@ -181,8 +181,7 @@ module "virtual-machine" {
 ## Load Balancer
 ##-----------------------------------------------------------------------------
 module "load-balancer" {
-  source     = "../.."
-  depends_on = [module.resource_group, module.virtual-machine]
+  source = "../.."
 
   #   Labels
   name        = "core"
@@ -214,7 +213,7 @@ module "load-balancer" {
   # Backend Pool
   is_enable_backend_pool            = true
   enable_ni_association             = true
-  network_interaface_id_association = [module.virtual-machine.network_interface_id]
+  network_interface_id_association  = [module.virtual-machine.network_interface_id]
   ip_configuration_name_association = ["app-test-ip-config-1"]
   # ip_configuration_name_association = [module.virtual-machine.ip_configuration_name] # Needs to define output in VM for this
 
