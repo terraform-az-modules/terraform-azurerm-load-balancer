@@ -93,7 +93,7 @@ module "security_group" {
 module "vault" {
   source                        = "terraform-az-modules/key-vault/azurerm"
   version                       = "1.0.1"
-  name                          = "app"
+  name                          = "app7"
   environment                   = "qa"
   label_order                   = ["name", "environment", "location"]
   resource_group_name           = module.resource_group.resource_group_name
@@ -105,7 +105,7 @@ module "vault" {
   network_acls = {
     bypass         = "AzureServices"
     default_action = "Deny"
-    ip_rules       = []
+    ip_rules       = ["0.0.0.0/0"]
   }
   reader_objects_ids = {
     "Key Vault Administrator" = {
@@ -134,7 +134,8 @@ module "log-analytics" {
 ##-----------------------------------------------------------------------------
 module "virtual-machine" {
   depends_on          = [module.vault]
-  source              = "github.com/terraform-az-modules/terraform-azurerm-virtual-machine"
+  source              = "terraform-az-modules/virtual-machine/azurerm"
+  version             = "1.0.0"
   name                = "app"
   environment         = "dev"
   label_order         = ["name", "environment", "location"]
@@ -214,8 +215,7 @@ module "load-balancer" {
   is_enable_backend_pool            = true
   enable_ni_association             = true
   network_interface_id_association  = [module.virtual-machine.network_interface_id]
-  ip_configuration_name_association = ["app-test-ip-config-1"]
-  # ip_configuration_name_association = [module.virtual-machine.ip_configuration_name] # Needs to define output in VM for this
+  ip_configuration_name_association = [module.virtual-machine.ip_configuration_name]
 
   remote_port = {
     ssh   = ["Tcp", "22"]
