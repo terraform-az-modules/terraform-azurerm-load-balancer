@@ -35,7 +35,7 @@ module "vnet" {
 ##-----------------------------------------------------------------------------
 module "subnet" {
   source               = "terraform-az-modules/subnet/azurerm"
-  version              = "1.0.1"
+  version              = "1.0.2"
   environment          = "app"
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
