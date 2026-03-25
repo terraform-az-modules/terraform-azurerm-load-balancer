@@ -9,7 +9,7 @@ data "azurerm_client_config" "current_client_config" {}
 ##-----------------------------------------------------------------------------
 module "resource_group" {
   source      = "terraform-az-modules/resource-group/azurerm"
-  version     = "1.0.3"
+  version     = "1.0.4"
   name        = "app"
   environment = "qa"
   label_order = ["environment", "name", "location"]
