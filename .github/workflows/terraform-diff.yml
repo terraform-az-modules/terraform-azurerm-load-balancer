@@ -1,14 +1,17 @@
-name: Terraform plan Difference
+name: Terraform Plan PR Diff
+
 on:
   pull_request:
     branches:
       - master
+    paths:
+      - 'examples/complete/**'
 
 jobs:
 # Update 'Job name' and 'terraform_directory' as needed based on the module structure.
   basic-example:
     if: github.actor != 'dependabot[bot]'
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-pr-checks.yaml@master
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-diff-checks.yml@v2
     with:
       provider: 'azurerm'
       terraform_directory: 'examples/basic'
@@ -19,7 +22,7 @@ jobs:
 
   complete-example:
     if: github.actor != 'dependabot[bot]'
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-pr-checks.yaml@master
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-diff-checks.yml@v2
     with:
       provider: 'azurerm'
       terraform_directory: 'examples/complete'
