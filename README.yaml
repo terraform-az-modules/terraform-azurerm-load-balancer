@@ -1,49 +1,49 @@
----
-#
-# This is the canonical configuration for the `README.md`
-# Run `make readme` to rebuild the `README.md`
-#
+name: Terraform Azure Load Balancer
 
-# Name of this project
-name : Terraform Azure Module Template
+intro: |-
+  With our comprehensive DevOps toolkit - streamline operations, automate workflows, enhance collaboration and deploy with confidence.
 
-# License of this project
+badges_text: "Latest Release | tfsec | License | Changelog"
+
+about: |-
+  Terraform module to create and manage Load Balancer on Azure.
+
 license: "APACHE"
 
-# Canonical GitHub repo
-github_repo: terraform-az-modules/terraform-module-template
+github_repo: terraform-az-modules/terraform-azurerm-load-balancer
 
-# Badges to display
 badges:
   - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v0.13-green"
+    image: "https://img.shields.io/badge/Terraform-v1.10.0-green"
     url: "https://www.terraform.io"
+
   - name: "Licence"
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
     url: "LICENSE.md"
-  - name: "Changelog"
-    image: "https://img.shields.io/badge/Changelog-blue"
-    url: "CHANGELOG.md"
 
-# Prerequesties to display
-prerequesties:
+prerequisites:
   - name: Terraform
     url: https://learn.hashicorp.com/terraform/getting-started/install.html
-    version: ">= 1.6.6"
+    version: ">= 1.10.0"
 
 providers:
-  - name: azure
-    url: https://azure.microsoft.com/
-    version: ">= 3.116.0"
+  - name: azurerm
+    url: https://registry.terraform.io/providers/hashicorp/azurerm/latest
+    version: ">= 4.0"
 
-#  description of this project
 description: |-
-  Terraform Azure Module Template to create new modules using this as baseline
+  Terraform module to create and manage Load Balancer on Azure.
 
-# How to use this project
-# How to use this project
 usage: |-
-  Here are some examples of how you can use this module in your inventory structure:
+  ### Example
+
   ```hcl
-    locals {}
-    ```
+  module "resource_group" {
+    source      = "terraform-az-modules/resource-group/azurerm"
+    version     = "1.0.3"
+    name        = "app"
+    environment = "qa"
+    label_order = ["environment", "name", "location"]
+    location    = "canadacentral"
+  }
+  ```
