@@ -21,7 +21,7 @@ module "resource_group" {
 ##-----------------------------------------------------------------------------
 module "vnet" {
   source              = "terraform-az-modules/vnet/azurerm"
-  version             = "1.0.3"
+  version             = "1.0.4"
   name                = "app"
   environment         = "qa"
   label_order         = ["name", "environment", "location"]
@@ -92,7 +92,7 @@ module "security_group" {
 ##------------------------------------------------------------------------------
 module "vault" {
   source                        = "terraform-az-modules/key-vault/azurerm"
-  version                       = "2.1.0"
+  version                       = "2.3.0"
   name                          = "app7"
   environment                   = "qa"
   label_order                   = ["name", "environment", "location"]
@@ -121,7 +121,7 @@ module "vault" {
 ##-----------------------------------------------------------------------------
 module "log-analytics" {
   source              = "terraform-az-modules/log-analytics/azurerm"
-  version             = "1.0.3"
+  version             = "2.0.0"
   name                = "core"
   environment         = "qa"
   label_order         = ["name", "environment", "location"]
