@@ -92,7 +92,7 @@ module "security_group" {
 ##------------------------------------------------------------------------------
 module "vault" {
   source                        = "terraform-az-modules/key-vault/azurerm"
-  version                       = "3.0.0"
+  version                       = "3.1.0"
   name                          = "app7"
   environment                   = "qa"
   label_order                   = ["name", "environment", "location"]
