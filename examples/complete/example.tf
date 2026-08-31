@@ -135,7 +135,7 @@ module "log-analytics" {
 module "virtual-machine" {
   depends_on          = [module.vault]
   source              = "terraform-az-modules/virtual-machine/azurerm"
-  version             = "1.2.0"
+  version             = "1.3.0"
   name                = "app"
   environment         = "dev"
   label_order         = ["name", "environment", "location"]
