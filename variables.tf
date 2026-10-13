@@ -202,6 +202,7 @@ variable "frontend_ip_configurations" {
     private_ip_address_allocation = string
     private_ip_address_version    = optional(string)
     subnet_id                     = optional(string)
+    zones                         = optional(list(string))
   }))
   default = [
     {

@@ -18,6 +18,12 @@ jobs:
       working_directory: './examples/complete/'
       provider: none
 
+  internal-ha-ports-example:
+    uses: clouddrove/github-shared-workflows/.github/workflows/smurf-tf-checks.yml@v2
+    with:
+      working_directory: './examples/internal-ha-ports/'
+      provider: none
+
 # Seperate Job for TFlint workflow call
   tf-lint:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@v2
