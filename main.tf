@@ -52,6 +52,7 @@ resource "azurerm_lb" "load-balancer" {
   resource_group_name = var.resource_group_name
   edge_zone           = var.edge_zone
   sku                 = var.lb_sku
+  tags                = module.labels.tags
 
   dynamic "frontend_ip_configuration" {
     for_each = var.frontend_ip_configurations
