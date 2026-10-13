@@ -62,6 +62,7 @@ resource "azurerm_lb" "load-balancer" {
       private_ip_address_version    = lookup(frontend_ip_configuration.value, "private_ip_address_version", null)
       public_ip_address_id          = var.public_ip_enabled ? azurerm_public_ip.default[frontend_ip_configuration.key].id : null
       subnet_id                     = lookup(frontend_ip_configuration.value, "subnet_id", null)
+      zones                         = frontend_ip_configuration.value.zones
     }
   }
 
@@ -117,7 +118,7 @@ resource "azurerm_lb_probe" "load-balancer" {
   interval_in_seconds = var.lb_probe_interval
   number_of_probes    = var.lb_probe_unhealthy_threshold
   protocol            = element(var.lb_probe[element(keys(var.lb_probe), count.index)], 0)
-  request_path        = element(var.lb_probe[element(keys(var.lb_probe), count.index)], 2)
+  request_path        = try(var.lb_probe[element(keys(var.lb_probe), count.index)][2], null)
 }
 
 ##----------------------------------------------------------------------------
